@@ -18,4 +18,3 @@ btn.addEventListener("click", function () {
         flag = true;
     }
 });
-
