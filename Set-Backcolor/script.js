@@ -6,3 +6,4 @@ let flag = true;
 btn.addEventListener("click", function () {
     document.body.style.backgroundColor = ran
 });
+git config --global user.email "EstevaoLocks"
