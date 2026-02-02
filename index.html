@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>Página Inicial — Treino JavaScript</title>
+</head>
+<body>
+    <header>
+        <div class="logo">JS</div>
+        <div>
+            <h1>Painel de exercícios — Treino JavaScript</h1>
+            <p class="lead">Abra as páginas abaixo para praticar. Cada uma contém um exercício separado com código JS.</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="controls">
+            <input id="filtro" class="search" placeholder="Pesquisar por título, tag ou dificuldade..." aria-label="Pesquisar exercícios" />
+            <button id="novo" class="btn" title="Adicionar link de exercício">+ Novo exercício</button>
+        </div>
+
+        <section id="lista" class="grid" aria-live="polite">
+            <!-- Cards gerados por JavaScript -->
+        </section>
+
+        <footer>
+            Crie arquivos ao lado deste (ex.: exercicio-01.html, eventos.html, dom.html). Clique em um card para abrir.
+        </footer>
+    </main>
+
+    <script>
+        // GitHub Copilot: exemplo de índice dinâmico para exercícios
+        const exercises = [
+            {id: "exercicio-01.html", title: "01 - Fundamentos: Variáveis e Tipos", desc: "Introdução a let/const, tipos primitivos e console.log.", tag:"básico", diff:"Fácil"},
+            {id: "dom.html", title: "02 - Manipulação do DOM", desc: "Selecionar elementos, alterar conteúdo e classes.", tag:"DOM", diff:"Médio"},
+            {id: "eventos.html", title: "03 - Eventos e Listeners", desc: "Cliks, formulários e delegação de eventos.", tag:"Eventos", diff:"Médio"},
+            {id: "promises.html", title: "04 - Promises e Fetch", desc: "Trabalhar com requisições assíncronas e then/await.", tag:"assincrono", diff:"Avançado"},
+            {id: "desafio.html", title: "05 - Desafio: Mini-app", desc: "Desenvolva um pequeno app usando tudo aprendido.", tag:"desafio", diff:"Variável"}
+        ];
+
+        const listaEl = document.getElementById('lista');
+        const filtro = document.getElementById('filtro');
+
+        function render(list) {
+            listaEl.innerHTML = '';
+            if (!list.length) {
+                listaEl.innerHTML = '<div style="color:var(--muted);grid-column:1/-1;padding:18px;background:var(--card);border-radius:10px">Nenhum exercício encontrado.</div>';
+                return;
+            }
+            list.forEach(e => {
+                const div = document.createElement('article');
+                div.className = 'card';
+                div.innerHTML = `
+                    <h3>${escapeHtml(e.title)}</h3>
+                    <div class="meta"><span>Tag: ${escapeHtml(e.tag)}</span><span>${escapeHtml(e.diff)}</span></div>
+                    <p>${escapeHtml(e.desc)}</p>
+                    <a class="run" href="./${encodeURI(e.id)}">Abrir</a>
+                `;
+                listaEl.appendChild(div);
+            });
+        }
+
+        function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c]); }
+
+        filtro.addEventListener('input', () => {
+            const q = filtro.value.trim().toLowerCase();
+            if (!q) return render(exercises);
+            const filtered = exercises.filter(e => {
+                return (e.title + ' ' + e.desc + ' ' + e.tag + ' ' + e.diff).toLowerCase().includes(q);
+            });
+            render(filtered);
+        });
+
+        // Permite adicionar um atalho (não cria arquivo automaticamente)
+        document.getElementById('novo').addEventListener('click', () => {
+            const fname = prompt('Nome do arquivo (ex: meu-exercicio.html):');
+            if (!fname) return;
+            const title = prompt('Título do exercício:', fname.replace(/[-.]/g,' ')) || fname;
+            exercises.push({id: fname, title, desc: 'Novo exercício — edite o arquivo.', tag:'personalizado', diff:'--'});
+            render(exercises);
+        });
+
+        // Inicializa
+        render(exercises);
+    </script>
+</body>
+</html>

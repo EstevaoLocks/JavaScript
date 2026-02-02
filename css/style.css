@@ -1,0 +1,143 @@
+:root {
+    --bg: #0f1724;
+    --card: #0b1220;
+    --accent: #06b6d4;
+    --muted: #94a3b8;
+    --glass: rgba(255, 255, 255, 0.03)
+}
+
+* {
+    box-sizing: border-box;
+    font-family: Inter, system-ui, Segoe UI, Roboto, "Helvetica Neue", Arial
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(180deg, #081024 0%, var(--bg) 100%);
+    color: #e6eef6;
+    min-height: 100vh
+}
+
+header {
+    padding: 28px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    display: flex;
+    align-items: center;
+    gap: 16px
+}
+
+.logo {
+    width: 46px;
+    height: 46px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    color: #022;
+    box-shadow: 0 6px 18px rgba(6, 182, 212, 0.12)
+}
+
+h1 {
+    font-size: 18px;
+    margin: 0
+}
+
+p.lead {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 13px
+}
+
+main {
+    padding: 20px;
+    max-width: 1100px;
+    margin: 24px auto
+}
+
+.controls {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px
+}
+
+.search {
+    flex: 1;
+    min-width: 220px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    background: var(--glass);
+    color: inherit
+}
+
+.btn {
+    background: var(--accent);
+    color: #022;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px
+}
+
+.card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.03)
+}
+
+.card h3 {
+    margin: 0 0 8px;
+    font-size: 16px
+}
+
+.meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    color: var(--muted);
+    font-size: 13px
+}
+
+.card p {
+    margin: 8px 0 12px;
+    color: var(--muted);
+    font-size: 13px
+}
+
+.card a.run {
+    display: inline-block;
+    padding: 8px 10px;
+    background: #062436;
+    color: var(--accent);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700
+}
+
+footer {
+    padding: 18px 24px;
+    color: var(--muted);
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.02);
+    margin-top: 30px
+}
+
+@media (max-width:520px) {
+    header {
+        padding: 18px
+    }
+
+    main {
+        padding: 16px
+    }
+}
