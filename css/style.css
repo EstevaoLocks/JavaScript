@@ -8,14 +8,14 @@
 
 * {
     box-sizing: border-box;
-    font-family: Inter, system-ui, Segoe UI, Roboto, "Helvetica Neue", Arial
 }
 
 body {
     margin: 0;
     background: linear-gradient(180deg, #081024 0%, var(--bg) 100%);
     color: #e6eef6;
-    min-height: 100vh
+    min-height: 100vh;
+    font-family: Inter, system-ui, Segoe UI, Roboto, "Helvetica Neue", Arial
 }
 
 header {
